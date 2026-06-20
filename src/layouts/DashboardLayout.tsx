@@ -120,7 +120,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   lineHeight: 1.1,
                 }}
               >
-                ĐỒ ÁN TỐT NGHIỆP KTS
+                ĐỒ ÁN TỐT NGHIỆP KTXD
               </Typography>
               <Typography
                 variant="caption"
@@ -134,7 +134,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   display: { xs: 'none', sm: 'block' },
                 }}
               >
-                Khoa Kinh tế Xây dựng - ĐHBK Đà Nẵng
+                Khoa Quản Lý Dự Án - ĐHBK Đà Nẵng
               </Typography>
             </Box>
           </Box>
