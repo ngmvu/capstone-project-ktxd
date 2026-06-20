@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: 'Outfit', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -40,6 +42,22 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Resize cursor utility */
+.cursor-col-resize {
+  cursor: col-resize !important;
 }
 
 /* Tùy chỉnh thanh cuộn trình duyệt (Scrollbar) cho thẩm mỹ đồng bộ */
