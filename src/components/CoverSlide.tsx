@@ -114,7 +114,7 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
               mt: 0.5,
             }}
           >
-            Khoa Kinh tế Xây dựng
+            Khoa Quản Lý Dự Án
           </Typography>
           <Box
             sx={{
