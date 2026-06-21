@@ -49,7 +49,6 @@ const SIDEBAR_WIDTH = 250;
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   children,
-  lastRefreshed,
   autoRefreshInterval,
   isRefreshing,
   onRefresh,
@@ -73,12 +72,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   
   const handleMenuClose = () => {
     setAnchorEl(null);
-  };
-
-  // Định dạng giờ hiển thị
-  const formatTime = (date: Date | null) => {
-    if (!date) return 'Chưa cập nhật';
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   };
 
   const getSectionTitle = (section: string) => {
@@ -426,9 +419,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     onClick={handleMenuClose} // Close menu when an item is clicked
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    PaperProps={{
-                      elevation: 0,
-                      sx: {
+                    sx={{
+                      '& .MuiPaper-root': {
                         mt: 1.5,
                         minWidth: 260,
                         borderRadius: 3,

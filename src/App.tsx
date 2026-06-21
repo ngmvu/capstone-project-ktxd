@@ -6,7 +6,6 @@ import { MsalProvider } from '@azure/msal-react';
 import { theme } from './theme/theme';
 import { msalInstance } from './services/MsalService';
 import { AuthProvider } from './components/AuthProvider';
-import ProtectedRoute from './components/ProtectedRoute';
 import { DashboardPage } from './pages/DashboardPage';
 
 export const App: React.FC = () => {

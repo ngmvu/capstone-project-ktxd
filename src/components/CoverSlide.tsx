@@ -27,7 +27,9 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
       {/* Main Cover Card */}
       <Paper
         elevation={0}
+        onClick={onStart}
         sx={{
+          cursor: 'pointer',
           width: '100%',
           maxWidth: '960px',
           zIndex: 1,
