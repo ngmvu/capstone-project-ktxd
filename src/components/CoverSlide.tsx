@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography, Button, Paper, Divider } from '@mui/material';
+import { Box, Typography, Paper, Divider } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import logoDhbk from '../assets/logo/dhbk.jpg';
+import logoQlda from '../assets/logo/qlda.jpg';
 
 interface CoverSlideProps {
   onStart: () => void;
@@ -16,43 +17,13 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: 'calc(100vh - 180px)',
-        py: 4,
+        minHeight: 'calc(100vh - 120px)',
+        py: 2,
         px: 2,
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Background glowing effects */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '15%',
-          left: '10%',
-          width: '350px',
-          height: '350px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)',
-          filter: 'blur(50px)',
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '15%',
-          right: '10%',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      />
-
       {/* Main Cover Card */}
       <Paper
         elevation={0}
@@ -60,27 +31,50 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
           width: '100%',
           maxWidth: '960px',
           zIndex: 1,
-          p: { xs: 3, sm: 6 },
-          borderRadius: 4,
-          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(9, 13, 22, 0.9) 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          backdropFilter: 'blur(24px)',
+          p: { xs: 3, sm: 5 },
+          borderRadius: 3,
+          backgroundColor: '#FFFFFF',
+          border: '1px solid rgba(0, 0, 0, 0.08)',
           textAlign: 'center',
-          boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.5)',
+          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.04)',
           position: 'relative',
         }}
       >
         {/* University Header */}
-        <Box sx={{ mb: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box sx={{ mb: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {/* Side-by-side logos (Trường bên trái, Khoa bên phải) */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: { xs: 3, sm: 4 }, mb: 2.5 }}>
+            <Box
+              component="img"
+              src={logoDhbk}
+              alt="Logo Trường Đại học Bách khoa"
+              sx={{
+                height: { xs: 55, sm: 70 },
+                width: 'auto',
+                objectFit: 'contain',
+              }}
+            />
+            <Box
+              component="img"
+              src={logoQlda}
+              alt="Logo Khoa Quản lý dự án"
+              sx={{
+                height: { xs: 55, sm: 70 },
+                width: 'auto',
+                objectFit: 'contain',
+              }}
+            />
+          </Box>
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: 'Outfit',
-              fontWeight: 800,
-              letterSpacing: '0.15em',
-              color: '#94a3b8',
+              fontWeight: 700,
+              fontSize: '13px',
               textTransform: 'uppercase',
-              fontSize: { xs: '0.75rem', sm: '0.9rem' },
+              letterSpacing: '0.08em',
+              color: '#475467',
+              mb: 0.5,
+              fontFamily: 'Arial, sans-serif',
             }}
           >
             Đại học Đà Nẵng
@@ -88,16 +82,13 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: 'Outfit',
               fontWeight: 800,
-              letterSpacing: '0.05em',
-              color: '#f8fafc',
+              fontSize: '16px',
               textTransform: 'uppercase',
-              fontSize: { xs: '0.95rem', sm: '1.25rem' },
-              mt: 0.5,
-              background: 'linear-gradient(90deg, #e2e8f0, #ffffff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              letterSpacing: '0.04em',
+              color: '#1D2939',
+              mb: 0.5,
+              fontFamily: 'Arial, sans-serif',
             }}
           >
             Trường Đại học Bách khoa
@@ -105,25 +96,23 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
           <Typography
             variant="subtitle1"
             sx={{
-              fontFamily: 'Outfit',
               fontWeight: 700,
-              letterSpacing: '0.08em',
-              color: '#38bdf8',
+              fontSize: '14px',
               textTransform: 'uppercase',
-              fontSize: { xs: '0.85rem', sm: '1.05rem' },
-              mt: 0.5,
+              letterSpacing: '0.06em',
+              color: '#1976D2',
+              mb: 1.5,
+              fontFamily: 'Arial, sans-serif',
             }}
           >
             Khoa Quản Lý Dự Án
           </Typography>
           <Box
             sx={{
-              width: '80px',
+              width: '60px',
               height: '3px',
-              backgroundColor: '#6366f1',
+              backgroundColor: '#1976D2',
               borderRadius: '99px',
-              mt: 2.5,
-              background: 'linear-gradient(90deg, #6366f1, #06b6d4)',
             }}
           />
         </Box>
@@ -134,24 +123,24 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 1,
-            px: 3,
-            py: 1,
+            px: 2.5,
+            py: 0.75,
             borderRadius: '999px',
-            backgroundColor: 'rgba(99, 102, 241, 0.08)',
-            border: '1px solid rgba(99, 102, 241, 0.2)',
-            mb: 4,
+            backgroundColor: 'rgba(25, 118, 210, 0.06)',
+            border: '1px solid rgba(25, 118, 210, 0.15)',
+            mb: 3,
           }}
         >
-          <SchoolIcon sx={{ color: '#818cf8', fontSize: 20 }} />
+          <SchoolIcon sx={{ color: '#1976D2', fontSize: 18 }} />
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: 'Outfit',
               fontWeight: 700,
-              color: '#818cf8',
-              letterSpacing: '0.1em',
+              color: '#1976D2',
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              fontSize: '0.8rem',
+              fontSize: '12px',
+              fontFamily: 'Arial, sans-serif',
             }}
           >
             Đồ Án Tốt Nghiệp Kỹ Sư
@@ -160,107 +149,85 @@ export const CoverSlide: React.FC<CoverSlideProps> = ({ onStart }) => {
 
         {/* Main Title */}
         <Typography
-          variant="h3"
+          component="h1"
           sx={{
-            fontFamily: 'Outfit',
-            fontWeight: 800,
-            lineHeight: 1.25,
-            mb: 3,
-            fontSize: { xs: '1.8rem', sm: '2.5rem', md: '2.8rem' },
-            background: 'linear-gradient(135deg, #ffffff 10%, #c7d2fe 50%, #818cf8 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            maxWidth: '820px',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '22px',
+            fontWeight: 700,
+            lineHeight: 1.6,
+            color: '#1D2939',
+            textAlign: 'center',
+            maxWidth: '850px',
             mx: 'auto',
+            mb: 3,
+            textTransform: 'uppercase',
           }}
         >
-          ỨNG DỤNG BÁO CÁO ĐỒNG BỘ POWER BI VÀ MÔ HÌNH 3D AUTODESK TRONG QUẢN LÝ DỰ ÁN KINH TẾ XÂY DỰNG
+          LẬP DỰ ÁN TRIỂN KHAI THI CÔNG CÔNG TRÌNH TRƯỜNG TIỂU HỌC, TRUNG HỌC CƠ SỞ VÀ TRUNG HỌC PHỔ THÔNG HY VỌNG
         </Typography>
 
-        <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.06)' }} />
+        <Divider sx={{ my: 3, borderColor: 'rgba(0,0,0,0.06)' }} />
 
         {/* Metadata section (2 columns) */}
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-            gap: 3,
+            gap: 2.5,
             textAlign: 'left',
             maxWidth: '680px',
             mx: 'auto',
-            mb: 5,
-            p: 3,
-            backgroundColor: 'rgba(255, 255, 255, 0.02)',
-            borderRadius: 3,
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            mb: 4,
+            p: 2.5,
+            backgroundColor: '#F8F9FA',
+            borderRadius: 2,
+            border: '1px solid rgba(0, 0, 0, 0.06)',
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             <Box>
-              <Typography variant="caption" sx={{ color: '#64748b', textTransform: 'uppercase', fontWeight: 600, tracking: '0.05em' }}>
+              <Typography variant="caption" sx={{ color: '#475467', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.02em' }}>
                 Sinh viên thực hiện
               </Typography>
-              <Typography variant="body1" sx={{ fontFamily: 'Outfit', fontWeight: 700, color: '#f1f5f9' }}>
+              <Typography variant="body1" sx={{ fontWeight: 700, color: '#1D2939' }}>
                 Nguyễn Thị Thu Hương
               </Typography>
             </Box>
             <Box>
-              <Typography variant="caption" sx={{ color: '#64748b', textTransform: 'uppercase', fontWeight: 600, tracking: '0.05em' }}>
+              <Typography variant="caption" sx={{ color: '#475467', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.02em' }}>
                 Mã sinh viên / Lớp
               </Typography>
-              <Typography variant="body1" sx={{ fontFamily: 'Outfit', fontWeight: 600, color: '#e2e8f0' }}>
-                118210083 / Lớp 20KTXD
+              <Typography variant="body1" sx={{ fontWeight: 600, color: '#344054' }}>
+                118210083 / Lớp 21KX
               </Typography>
             </Box>
           </Box>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             <Box>
-              <Typography variant="caption" sx={{ color: '#64748b', textTransform: 'uppercase', fontWeight: 600, tracking: '0.05em' }}>
+              <Typography variant="caption" sx={{ color: '#475467', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.02em' }}>
                 Giảng viên hướng dẫn
               </Typography>
-              <Typography variant="body1" sx={{ fontFamily: 'Outfit', fontWeight: 700, color: '#f1f5f9' }}>
-                PGS. TS. Nguyễn Thế Quân
+              <Typography variant="body1" sx={{ fontWeight: 700, color: '#1D2939' }}>
+                TS. Trương Ngọc Sơn
+              </Typography>
+              <Typography variant="body1" sx={{ fontWeight: 700, color: '#1D2939' }}>
+                TS. Trương Quỳnh Châu
               </Typography>
             </Box>
             <Box>
-              <Typography variant="caption" sx={{ color: '#64748b', textTransform: 'uppercase', fontWeight: 600, tracking: '0.05em' }}>
+              <Typography variant="caption" sx={{ color: '#475467', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.02em' }}>
                 Năm học / Địa điểm
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.2 }}>
-                <CalendarTodayIcon sx={{ fontSize: 14, color: '#64748b' }} />
-                <Typography variant="body2" sx={{ fontFamily: 'Outfit', fontWeight: 600, color: '#94a3b8' }}>
+                <CalendarTodayIcon sx={{ fontSize: 13, color: '#475467' }} />
+                <Typography variant="body2" sx={{ fontWeight: 600, color: '#475467' }}>
                   2026 — TP. Đà Nẵng
                 </Typography>
               </Box>
             </Box>
           </Box>
         </Box>
-
-        {/* Start Button */}
-        <Button
-          variant="contained"
-          size="large"
-          onClick={onStart}
-          endIcon={<PlayArrowIcon />}
-          sx={{
-            px: 5,
-            py: 2,
-            fontSize: '1.05rem',
-            fontFamily: 'Outfit',
-            borderRadius: '999px',
-            background: 'linear-gradient(90deg, #6366f1, #06b6d4)',
-            boxShadow: '0 8px 30px rgba(99, 102, 241, 0.4)',
-            '&:hover': {
-              background: 'linear-gradient(90deg, #818cf8, #22d3ee)',
-              boxShadow: '0 12px 35px rgba(99, 102, 241, 0.5)',
-              transform: 'translateY(-2px)',
-            },
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          }}
-        >
-          Bắt đầu thuyết trình
-        </Button>
       </Paper>
     </Box>
   );

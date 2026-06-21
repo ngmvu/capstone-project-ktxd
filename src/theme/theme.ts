@@ -2,65 +2,122 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#6366f1', // Indigo hiện đại và rực rỡ
-      light: '#818cf8',
-      dark: '#4f46e5',
+      main: '#1976D2', // Xanh dương chủ đạo chuyên nghiệp
+      light: '#42a5f5',
+      dark: '#1565c0',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#06b6d4', // Cyan cho các chi tiết phụ và chỉ số trạng thái
-      light: '#22d3ee',
-      dark: '#0891b2',
+      main: '#0288d1',
+      light: '#29b6f6',
+      dark: '#01579b',
       contrastText: '#ffffff',
     },
     background: {
-      default: '#0b0f19', // Nền tối sâu sang trọng thay vì đen tuyền nhàm chán
-      paper: 'rgba(17, 24, 39, 0.7)', // Nền dạng mờ đục để dùng cho Glassmorphism
+      default: '#F5F7FA', // Nền xám xanh nhạt tinh tế
+      paper: '#ffffff', // Card nền trắng sạch sẽ
     },
     text: {
-      primary: '#f3f4f6',
-      secondary: '#9ca3af',
-      disabled: '#6b7280',
+      primary: '#1D2939', // Chữ tối màu dễ đọc
+      secondary: '#475467',
+      disabled: '#98A2B3',
     },
-    divider: 'rgba(255, 255, 255, 0.08)',
+    divider: 'rgba(0, 0, 0, 0.08)',
   },
   typography: {
-    fontFamily: '"Outfit", "Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h5: {
+    fontFamily: 'Arial, sans-serif',
+    htmlFontSize: 16,
+    fontSize: 16,
+    allVariants: {
+      color: '#1D2939',
+      lineHeight: 1.5,
+      letterSpacing: '0.005em',
+      textTransform: 'none',
+    },
+    h1: {
+      fontSize: '1.8rem',
       fontWeight: 700,
-      letterSpacing: '-0.025em',
+      lineHeight: 1.2,
+    },
+    h2: {
+      fontSize: '1.5rem',
+      fontWeight: 700,
+      lineHeight: 1.25,
+    },
+    h3: {
+      fontSize: '1.3rem',
+      fontWeight: 700,
+      lineHeight: 1.3,
+    },
+    h4: {
+      fontSize: '1.15rem',
+      fontWeight: 700,
+      lineHeight: 1.35,
+    },
+    h5: {
+      fontSize: '1.05rem',
+      fontWeight: 700,
+      lineHeight: 1.4,
     },
     h6: {
+      fontSize: '1rem',
       fontWeight: 600,
-      letterSpacing: '-0.01em',
+      lineHeight: 1.4,
+    },
+    subtitle1: {
+      fontSize: '0.95rem',
+      fontWeight: 600,
+      lineHeight: 1.5,
+    },
+    subtitle2: {
+      fontSize: '0.9rem',
+      fontWeight: 600,
+      lineHeight: 1.5,
+    },
+    body1: {
+      fontSize: '0.95rem',
+      fontWeight: 400,
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontSize: '0.9rem',
+      fontWeight: 400,
+      lineHeight: 1.6,
+    },
+    caption: {
+      fontSize: '0.8rem',
+      fontWeight: 500,
+      lineHeight: 1.5,
     },
     button: {
-      textTransform: 'none', // Giữ nguyên chữ hoa chữ thường như thiết kế hiện đại
+      textTransform: 'none',
       fontWeight: 600,
+      fontSize: '0.9rem',
     },
   },
   shape: {
-    borderRadius: 16, // Bo góc lớn mềm mại cao cấp
+    borderRadius: 12, // Bo góc cân đối hiện đại
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
-          padding: '8px 18px',
+          borderRadius: 8,
+          padding: '6px 16px',
           fontWeight: 600,
-          transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'all 0.2s ease-in-out',
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: '0 4px 12px rgba(99, 102, 241, 0.25)',
+            boxShadow: '0 4px 8px rgba(25, 118, 210, 0.15)',
             transform: 'translateY(-1px)',
           },
           '&.MuiButton-containedPrimary': {
-            background: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
+            background: '#1976D2',
+            color: '#ffffff',
             '&:hover': {
-              background: 'linear-gradient(135deg, #818cf8 0%, #4f46e5 100%)',
+              background: '#1565c0',
             },
           },
         },
@@ -70,18 +127,17 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          backdropFilter: 'blur(16px)', // Kích hoạt hiệu ứng làm mờ kính Glassmorphism
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+          border: '1px solid rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.04)',
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(11, 15, 25, 0.75)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
           boxShadow: 'none',
         },
       },

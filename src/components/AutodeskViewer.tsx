@@ -265,21 +265,21 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
           justifyContent: 'center',
           height: '100%',
           minHeight: '600px',
-          border: '1px dashed rgba(255, 255, 255, 0.15)',
+          border: '1px dashed rgba(0, 0, 0, 0.15)',
           borderRadius: 3,
-          backgroundColor: 'rgba(255, 255, 255, 0.02)',
+          backgroundColor: 'rgba(0, 0, 0, 0.02)',
           p: 4,
           textAlign: 'center',
         }}
       >
-        <Typography variant="h6" color="text.secondary" gutterBottom sx={{ fontFamily: 'Outfit', fontWeight: 600 }}>
+        <Typography variant="h6" color="text.secondary" gutterBottom sx={{ fontWeight: 600 }}>
           Autodesk Model Viewer
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 3, maxWidth: 320, fontFamily: 'Outfit' }}>
-          Connect to Autodesk Construction Cloud to view the integrated 3D model.
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3, maxWidth: 320 }}>
+          Kết nối đến Autodesk Construction Cloud để hiển thị mô hình 3D tích hợp.
         </Typography>
-        <Button variant="contained" color="primary" onClick={onConnect} sx={{ borderRadius: 2, textTransform: 'none', px: 4, py: 1, fontFamily: 'Outfit', fontWeight: 600 }}>
-          Connect Autodesk
+        <Button variant="contained" color="primary" onClick={onConnect} sx={{ borderRadius: 2, textTransform: 'none', px: 4, py: 1, fontWeight: 600 }}>
+          Kết nối Autodesk
         </Button>
       </Box>
     );
@@ -295,18 +295,18 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
           justifyContent: 'center',
           height: '100%',
           minHeight: '600px',
-          border: '1px dashed rgba(255, 255, 255, 0.15)',
+          border: '1px dashed rgba(0, 0, 0, 0.15)',
           borderRadius: 3,
-          backgroundColor: 'rgba(255, 255, 255, 0.02)',
+          backgroundColor: 'rgba(0, 0, 0, 0.02)',
           p: 4,
           textAlign: 'center',
         }}
       >
-        <Typography variant="body1" color="text.secondary" sx={{ fontFamily: 'Outfit', fontWeight: 500 }}>
-          No model selected
+        <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500 }}>
+          Chưa chọn mô hình
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, maxWidth: 320, fontFamily: 'Outfit' }}>
-          Select a file version from the Autodesk ACC Browser on the left to display its 3D model.
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, maxWidth: 320 }}>
+          Chọn một phiên bản tệp tin từ Trình duyệt thư mục Autodesk ACC bên trái để hiển thị mô hình 3D.
         </Typography>
       </Box>
     );
@@ -319,7 +319,7 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
         inset: 0,
         borderRadius: 0,
         overflow: 'hidden',
-        backgroundColor: '#0b0f19',
+        backgroundColor: '#F5F7FA',
       }}
     >
       {/* Loading status overlay — full centered */}
@@ -333,8 +333,8 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'rgba(9, 13, 22, 0.85)',
-            backdropFilter: 'blur(12px)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(8px)',
           }}
         >
           {/* Spinner ring (only when not error/success) */}
@@ -344,8 +344,8 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
                 width: 56,
                 height: 56,
                 mb: 3,
-                border: '3px solid rgba(99, 102, 241, 0.15)',
-                borderTopColor: '#818cf8',
+                border: '3px solid rgba(25, 118, 210, 0.15)',
+                borderTopColor: '#1976D2',
                 borderRadius: '50%',
                 animation: 'spin 0.8s linear infinite',
               }}
@@ -364,8 +364,7 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
           <Typography
             variant="body1"
             sx={{
-              fontFamily: 'Outfit',
-              color: loadStatus.includes('❌') ? '#f87171' : loadStatus.includes('✅') ? '#34d399' : '#e0e7ff',
+              color: loadStatus.includes('❌') ? '#D32F2F' : loadStatus.includes('✅') ? '#2E7D32' : '#1D2939',
               fontWeight: 600,
               fontSize: '1rem',
               textAlign: 'center',
@@ -384,9 +383,9 @@ export const AutodeskViewer: React.FC<AutodeskViewerProps> = ({ onConnect, urn, 
                 width: 260,
                 height: 3,
                 borderRadius: 2,
-                backgroundColor: 'rgba(99, 102, 241, 0.12)',
+                backgroundColor: 'rgba(25, 118, 210, 0.12)',
                 '& .MuiLinearProgress-bar': {
-                  backgroundColor: '#818cf8',
+                  backgroundColor: '#1976D2',
                 },
               }}
             />

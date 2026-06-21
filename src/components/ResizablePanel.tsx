@@ -93,7 +93,7 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
           {/* Vertical gutter line */}
           <div
             style={{ width: 2, height: '100%', borderRadius: 999 }}
-            className="bg-white/5 group-hover:bg-indigo-500/50 transition-colors duration-200"
+            className="bg-black/5 group-hover:bg-blue-500/50 transition-colors duration-200"
           />
           {/* Centre grip pill */}
           <div
@@ -112,13 +112,13 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
               borderRadius: 999,
               padding: '4px 0',
             }}
-            className="bg-white/10 group-hover:bg-indigo-400/70 transition-all duration-200"
+            className="bg-black/10 group-hover:bg-blue-400/70 transition-all duration-200"
           >
             {[0, 1, 2].map(i => (
               <span
                 key={i}
                 style={{ display: 'block', width: 2, height: 2, borderRadius: '50%' }}
-                className="bg-white/50 group-hover:bg-white transition-colors duration-150"
+                className="bg-black/30 group-hover:bg-black transition-colors duration-150"
               />
             ))}
           </div>
@@ -142,24 +142,24 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
             borderRadius: 999,
             fontSize: '0.7rem',
             fontWeight: 600,
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: 'Arial, sans-serif',
             cursor: 'pointer',
-            border: '1px solid rgba(255,255,255,0.1)',
-            background: 'rgba(15, 23, 42, 0.85)',
-            color: '#cbd5e1',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            color: '#475467',
             backdropFilter: 'blur(8px)',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
             transition: 'all 0.2s',
           }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = 'rgba(99,102,241,0.25)';
-            (e.currentTarget as HTMLButtonElement).style.color = '#a5b4fc';
-            (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(99,102,241,0.4)';
+            (e.currentTarget as HTMLButtonElement).style.background = 'rgba(25, 118, 210, 0.08)';
+            (e.currentTarget as HTMLButtonElement).style.color = '#1976D2';
+            (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(25, 118, 210, 0.2)';
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = 'rgba(15, 23, 42, 0.85)';
-            (e.currentTarget as HTMLButtonElement).style.color = '#cbd5e1';
-            (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)';
+            (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255, 255, 255, 0.9)';
+            (e.currentTarget as HTMLButtonElement).style.color = '#475467';
+            (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0, 0, 0, 0.08)';
           }}
         >
           {collapsed ? (

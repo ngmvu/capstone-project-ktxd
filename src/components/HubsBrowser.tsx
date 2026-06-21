@@ -219,11 +219,11 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
       const hasChildren = node.type !== 'version';
 
       let icon = <ChevronRightIcon />;
-      if (node.type === 'hub') icon = <DeviceHubIcon sx={{ color: '#818cf8' }} />;
-      if (node.type === 'project') icon = <BusinessIcon sx={{ color: '#38bdf8' }} />;
-      if (node.type === 'folder') icon = <FolderIcon sx={{ color: '#fbbf24' }} />;
-      if (node.type === 'item') icon = <InsertDriveFileIcon sx={{ color: '#9ca3af' }} />;
-      if (node.type === 'version') icon = <HistoryIcon sx={{ color: '#10b981' }} />;
+      if (node.type === 'hub') icon = <DeviceHubIcon sx={{ color: '#1976D2' }} />;
+      if (node.type === 'project') icon = <BusinessIcon sx={{ color: '#0288d1' }} />;
+      if (node.type === 'folder') icon = <FolderIcon sx={{ color: '#ED6C02' }} />;
+      if (node.type === 'item') icon = <InsertDriveFileIcon sx={{ color: '#64748B' }} />;
+      if (node.type === 'version') icon = <HistoryIcon sx={{ color: '#2E7D32' }} />;
 
       return (
         <React.Fragment key={node.id}>
@@ -235,7 +235,7 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
               borderRadius: 2,
               mb: 0.5,
               '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.05)'
+                backgroundColor: 'rgba(0, 0, 0, 0.04)'
               }
             }}
           >
@@ -246,9 +246,9 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
               primary={
                 <Typography 
                   sx={{ 
-                    fontFamily: 'Outfit', 
-                    fontSize: node.type === 'hub' ? '0.95rem' : '0.85rem',
+                    fontSize: node.type === 'hub' ? '0.9rem' : '0.85rem',
                     fontWeight: node.type === 'hub' || node.type === 'project' ? 600 : 400,
+                    color: '#1D2939',
                   }}
                   noWrap
                 >
@@ -285,7 +285,7 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
   if (error) {
     return (
       <Box sx={{ p: 2 }}>
-        <Typography color="error" variant="caption" sx={{ fontFamily: 'Outfit' }}>
+        <Typography color="error" variant="caption">
           {error}
         </Typography>
       </Box>
@@ -295,7 +295,7 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
   if (nodes.length === 0) {
     return (
       <Box sx={{ p: 2, textAlign: 'center' }}>
-        <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'Outfit' }}>
+        <Typography variant="body2" color="text.secondary">
           No Hubs found. Make sure your account has access to ACC/BIM 360 projects.
         </Typography>
       </Box>
@@ -303,10 +303,7 @@ export const HubsBrowser: React.FC<HubsBrowserProps> = ({ onVersionSelected }) =
   }
 
   return (
-    <Box sx={{ overflowY: 'auto', maxHeight: 'calc(100vh - 200px)' }}>
-      <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 1.5, px: 1, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, fontFamily: 'Outfit' }}>
-        Autodesk ACC Browser
-      </Typography>
+    <Box sx={{ overflowY: 'auto', maxHeight: '100%' }}>
       <List component="nav" disablePadding>
         {renderTreeNodes(nodes)}
       </List>
