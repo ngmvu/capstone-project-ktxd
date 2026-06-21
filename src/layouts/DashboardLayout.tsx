@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   AppBar,
@@ -6,7 +6,6 @@ import {
   Typography,
   IconButton,
   Tooltip,
-  Chip,
   Button,
   FormControl,
   InputLabel,
@@ -17,16 +16,19 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
+  Avatar,
+  Menu,
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import SchoolIcon from '@mui/icons-material/School';
 import InfoIcon from '@mui/icons-material/Info';
 import TimerIcon from '@mui/icons-material/Timer';
+import LogoutIcon from '@mui/icons-material/Logout';
 import type { AutoRefreshInterval } from '../types/powerbi';
+import { useAuth } from '../hooks/useAuth';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -59,6 +61,20 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   onConnectAutodesk,
   onDisconnectAutodesk,
 }) => {
+  const { user, login, logout } = useAuth();
+  
+  // State for the unified profile menu
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const openMenu = Boolean(anchorEl);
+  
+  const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   // Định dạng giờ hiển thị
   const formatTime = (date: Date | null) => {
     if (!date) return 'Chưa cập nhật';
@@ -294,37 +310,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
             {/* Right: Controls Command Center */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              {/* Autodesk Connection Status in Header */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, borderRight: '1px solid rgba(0, 0, 0, 0.08)', pr: 1.5 }}>
-                <Typography variant="caption" sx={{ color: autodeskConnected ? '#2E7D32' : '#ED6C02', fontWeight: 700, fontSize: '0.75rem', display: { xs: 'none', sm: 'inline-block' } }}>
-                  {autodeskConnected ? 'ACC Connected' : 'ACC Disconnected'}
-                </Typography>
-                {autodeskConnected ? (
-                  <Button
-                    onClick={onDisconnectAutodesk}
-                    variant="outlined"
-                    color="error"
-                    size="small"
-                    sx={{ py: 0.25, px: 1, fontSize: '0.7rem', height: 26, borderRadius: 1.5 }}
-                  >
-                    Ngắt kết nối
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={onConnectAutodesk}
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    sx={{ py: 0.25, px: 1, fontSize: '0.7rem', height: 26, borderRadius: 1.5 }}
-                  >
-                    Kết nối
-                  </Button>
-                )}
-              </Box>
-
-              {/* Power BI Sync Status and Controls */}
+              {/* Power BI Sync Controls */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-
                 {/* Auto refresh dropdown */}
                 <FormControl size="small" sx={{ minWidth: 95 }}>
                   <InputLabel id="auto-refresh-label" sx={{ color: '#475467', fontSize: '0.7rem', mt: -0.2 }}>
@@ -368,9 +355,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                       p: 0.5,
                       width: 26,
                       height: 26,
-                      '&:hover': {
-                        backgroundColor: 'rgba(25, 118, 210, 0.08)',
-                      }
+                      '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.08)' },
                     }}
                   >
                     <RefreshIcon sx={{ animation: isRefreshing ? 'spin 1s linear infinite' : 'none', fontSize: 14 }} />
@@ -390,14 +375,170 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     p: 0.5,
                     width: 26,
                     height: 26,
-                    '&:hover': {
-                      backgroundColor: 'rgba(100, 116, 139, 0.08)',
-                    }
+                    '&:hover': { backgroundColor: 'rgba(100, 116, 139, 0.08)' },
                   }}
                 >
                   <FullscreenIcon sx={{ fontSize: 14 }} />
                 </IconButton>
               </Tooltip>
+
+              {/* Separator between tools and authentications */}
+              <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 0.5, borderColor: 'rgba(0, 0, 0, 0.08)' }} />
+
+              {/* Authenticaton Group: Autodesk & Microsoft */}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                {/* Unified Profile Menu */}
+                <Box>
+                  <Tooltip title="Tài khoản & Kết nối">
+                    <IconButton
+                      onClick={handleProfileClick}
+                      size="small"
+                      sx={{
+                        ml: 1,
+                        p: 0.5,
+                        border: '1px solid',
+                        borderColor: openMenu ? '#1976D2' : 'transparent',
+                        transition: 'all 0.2s',
+                      }}
+                      aria-controls={openMenu ? 'profile-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={openMenu ? 'true' : undefined}
+                    >
+                      <Avatar
+                        sx={{
+                          width: 32,
+                          height: 32,
+                          bgcolor: user ? '#1976D2' : '#9ca3af',
+                          fontWeight: 700,
+                          fontSize: '0.9rem',
+                        }}
+                      >
+                        {user ? user.name.charAt(0).toUpperCase() : <SchoolIcon fontSize="small" />}
+                      </Avatar>
+                    </IconButton>
+                  </Tooltip>
+                  
+                  <Menu
+                    id="profile-menu"
+                    anchorEl={anchorEl}
+                    open={openMenu}
+                    onClose={handleMenuClose}
+                    onClick={handleMenuClose} // Close menu when an item is clicked
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    PaperProps={{
+                      elevation: 0,
+                      sx: {
+                        mt: 1.5,
+                        minWidth: 260,
+                        borderRadius: 3,
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                        border: '1px solid rgba(0,0,0,0.06)',
+                        overflow: 'visible',
+                        '&:before': {
+                          content: '""',
+                          display: 'block',
+                          position: 'absolute',
+                          top: 0,
+                          right: 14,
+                          width: 10,
+                          height: 10,
+                          bgcolor: 'background.paper',
+                          transform: 'translateY(-50%) rotate(45deg)',
+                          zIndex: 0,
+                          borderTop: '1px solid rgba(0,0,0,0.06)',
+                          borderLeft: '1px solid rgba(0,0,0,0.06)',
+                        },
+                      }
+                    }}
+                  >
+                    {/* Microsoft Section */}
+                    <Box sx={{ px: 2.5, py: 2 }}>
+                      <Typography variant="overline" sx={{ color: '#64748B', fontWeight: 700, mb: 1, display: 'block', lineHeight: 1 }}>
+                        TÀI KHOẢN MICROSOFT
+                      </Typography>
+                      {user ? (
+                        <Box>
+                          <Typography variant="body2" sx={{ fontWeight: 700, color: '#1D2939' }}>
+                            {user.name}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: '#64748B', display: 'block', mb: 2 }}>
+                            {user.email}
+                          </Typography>
+                          <Button
+                            onClick={logout}
+                            variant="outlined"
+                            color="error"
+                            fullWidth
+                            size="small"
+                            startIcon={<LogoutIcon />}
+                            sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600 }}
+                          >
+                            Đăng xuất
+                          </Button>
+                        </Box>
+                      ) : (
+                        <Box>
+                          <Typography variant="caption" sx={{ color: '#64748B', display: 'block', mb: 1.5 }}>
+                            Chưa đăng nhập. Cần thiết để xem báo cáo Power BI.
+                          </Typography>
+                          <Button
+                            onClick={login}
+                            variant="contained"
+                            fullWidth
+                            size="small"
+                            sx={{ bgcolor: '#0078D4', '&:hover': { bgcolor: '#006CBF' }, borderRadius: 2, textTransform: 'none', fontWeight: 600 }}
+                          >
+                            Đăng nhập Microsoft
+                          </Button>
+                        </Box>
+                      )}
+                    </Box>
+
+                    <Divider sx={{ mx: 2, borderColor: 'rgba(0,0,0,0.06)' }} />
+
+                    {/* Autodesk Section */}
+                    <Box sx={{ px: 2.5, py: 2 }}>
+                      <Typography variant="overline" sx={{ color: '#64748B', fontWeight: 700, mb: 1, display: 'block', lineHeight: 1 }}>
+                        KẾT NỐI AUTODESK
+                      </Typography>
+                      {autodeskConnected ? (
+                        <Box>
+                          <Typography variant="body2" sx={{ color: '#2E7D32', fontWeight: 700, mb: 1.5 }}>
+                            Đã kết nối (ACC Connected)
+                          </Typography>
+                          <Button
+                            onClick={onDisconnectAutodesk}
+                            variant="outlined"
+                            color="error"
+                            fullWidth
+                            size="small"
+                            sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600 }}
+                          >
+                            Ngắt kết nối ACC
+                          </Button>
+                        </Box>
+                      ) : (
+                        <Box>
+                          <Typography variant="body2" sx={{ color: '#ED6C02', fontWeight: 700, mb: 1.5 }}>
+                            Chưa kết nối (ACC Disconnected)
+                          </Typography>
+                          <Button
+                            onClick={onConnectAutodesk}
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            size="small"
+                            sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600 }}
+                          >
+                            Đăng nhập ACC
+                          </Button>
+                        </Box>
+                      )}
+                    </Box>
+                  </Menu>
+                </Box>
+              </Box>
             </Box>
           </Toolbar>
         </AppBar>

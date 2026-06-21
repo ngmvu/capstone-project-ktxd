@@ -6,7 +6,7 @@ node_modules
 dist
 
 # Ignore env files
-# .env
+.env
 .env.development
 .env.production.local
 

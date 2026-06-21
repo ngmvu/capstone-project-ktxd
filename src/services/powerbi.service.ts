@@ -15,9 +15,7 @@ class PowerBIService {
     if (!config.reportId) {
       return { isValid: false, error: 'Thiếu cấu hình VITE_POWERBI_REPORT_ID. Vui lòng kiểm tra lại file .env.' };
     }
-    if (!config.accessToken) {
-      return { isValid: false, error: 'Thiếu cấu hình VITE_POWERBI_ACCESS_TOKEN. Vui lòng kiểm tra lại hoặc gia hạn Token.' };
-    }
+    // Note: accessToken is now provided dynamically by MSAL — no static token check needed here.
 
     // Kiểm tra định dạng cơ bản của Report ID (UUID/GUID)
     const guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -41,7 +39,8 @@ class PowerBIService {
       embedUrl: (import.meta.env.VITE_POWERBI_EMBED_URL || '').trim(),
       reportId: import.meta.env.VITE_POWERBI_REPORT_ID || '',
       groupId: import.meta.env.VITE_POWERBI_GROUP_ID || '',
-      accessToken: import.meta.env.VITE_POWERBI_ACCESS_TOKEN || '',
+      // accessToken is intentionally omitted — acquired at runtime via MSAL
+      accessToken: '',
     };
   }
 

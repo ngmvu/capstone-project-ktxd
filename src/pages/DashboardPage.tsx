@@ -11,6 +11,7 @@ import { CoverSlide } from '../components/CoverSlide';
 import { usePowerBI } from '../hooks/usePowerBI';
 import { powerBIService } from '../services/powerbi.service';
 import { getStoredToken, getAuthUrl, clearAuth } from '../services/AuthService';
+import { useAuth } from '../hooks/useAuth';
 
 export const DashboardPage: React.FC = () => {
   const {
@@ -22,6 +23,8 @@ export const DashboardPage: React.FC = () => {
     refreshReport,
     setAutoRefreshInterval,
   } = usePowerBI();
+
+  const { powerBIAccessToken } = useAuth();
 
   const [envConfigError, setEnvConfigError] = useState<string | null>(null);
   const [autodeskConnected, setAutodeskConnected] = useState<boolean>(false);
@@ -177,20 +180,20 @@ export const DashboardPage: React.FC = () => {
                 />
               </Box>
             ) : (
-              <>
-                {reportState.isLoading && (
+              <Box sx={{ height: '100%', position: 'relative' }}>
+                <PowerBIReport
+                  config={embedConfig}
+                  onReportLoaded={setEmbeddedReport}
+                  onReportError={setReportError}
+                />
+                {/* Only show the full-cover loading overlay if we have a token but the report hasn't finished rendering yet.
+                    PowerBIReport handles its own "waiting for auth" or "needs consent" UI internally. */}
+                {reportState.isLoading && powerBIAccessToken && (
                   <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: 3 }}>
                     <LoadingSpinner />
                   </Box>
                 )}
-                <Box sx={{ height: '100%', visibility: reportState.isLoading ? 'hidden' : 'visible' }}>
-                  <PowerBIReport
-                    config={embedConfig}
-                    onReportLoaded={setEmbeddedReport}
-                    onReportError={setReportError}
-                  />
-                </Box>
-              </>
+              </Box>
             )}
           </Box>
         </Box>
